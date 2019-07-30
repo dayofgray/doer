@@ -18,13 +18,15 @@ class TaskController < ApplicationController
     end
 
     get '/task/:id/edit' do
+        
     end
 
     patch '/task/:id' do
+
     end
 
     delete '/task/:id' do
-        
+
     end
 
 end

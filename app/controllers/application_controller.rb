@@ -8,14 +8,31 @@ class ApplicationController < Sinatra::Base
     end
 
     helpers do
-        
+        def current_user
+            @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+        end
+
+        def logged_in?
+            !!session[:user_id]
+        end
+
+        def login(uname, password)
+            @user = User.find_by(username: uname)
+            if @user && @user.authenticate(password)
+                session[:user_id] = @user.id
+            else
+                redirect '/login'
+            end
+        end
+
+        def logout
+            session.clear
+        end
+
     end
 
     get '/' do
-        
         erb :'index'
     end
-
-
 
 end

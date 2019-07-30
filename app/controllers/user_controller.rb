@@ -5,6 +5,11 @@ class UserController < ApplicationController
     end
 
     post '/users' do
+        @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+        if @user.save
+            erb :'tasks/tasks'
+        else
+            redirect '/signup' #need error message here
     end
 
     get '/login' do
@@ -12,6 +17,11 @@ class UserController < ApplicationController
     end
 
     post '/login' do
+    end
+
+    get '/logout' do
+        logout
+        redirect '/'
     end
 
 end
