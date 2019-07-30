@@ -7,8 +7,15 @@ class ApplicationController < Sinatra::Base
         set :session_secret, '92406-secret'
     end
 
-    get '/' do
-        "Hello World"
+    helpers do
+        
     end
+
+    get '/' do
+        
+        erb :'index'
+    end
+
+
 
 end
