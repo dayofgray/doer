@@ -1,0 +1,14 @@
+<h1>Edit Your Task: <%= @task.title %></h1>
+
+<form action='/tasks/<%= task.id %>' method='POST'>
+<input type="hidden" value="patch" name="_method">
+<label>Title:</label>
+<input type ='text' id="title" name="task[title]" value="<%= @task.title %>"> <br> <br>
+<label>Due_Date:</label>
+<input type ='date' id="due_date" name="task[due_date]" value="<%= @task.due_date %>"> <br> <br>
+<label>Priority:</label>
+<input type ='text' id="priority" name="task[priority]" value="<%= @task.priority %>"> <br> <br>
+
+<input type="submit" value="Update Task">
+
+</form>

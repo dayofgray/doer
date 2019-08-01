@@ -1,0 +1,10 @@
+<h1><%= @task.title%></h1>
+
+<h3>Due Date: <%= @task.due_date.strftime("%m/%d/%Y") %> </h3>
+<% if @task.priority %>
+<h3>Priority: <%= @task.priority %> </h3>
+<% end %>
+
+<form action='/tasks/<%= task.id %>' method='POST'>
+<input type="hidden" value="delete" name="_method">
+<input type="submit" value="delete">

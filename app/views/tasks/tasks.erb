@@ -1,0 +1,14 @@
+<h1>Welcome to your tasks</h1>
+
+<ol>
+<% @tasks.each do |task|%>
+<li><%= task.title%>
+<ul>
+<li>Due Date: <%= task.due_date%> </li>
+<% if task.priority %>
+<li>Priority: <%= task.priority %> </li>
+<% end %>
+</ul>
+</li>
+<% end %>
+</ol>

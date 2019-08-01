@@ -1,4 +1,6 @@
-require_relative './config/environment'
+require './config/environment'
+require 'sinatra/flash'
+require 'sinatra'
 
 use Rack::MethodOverride
 use UserController
