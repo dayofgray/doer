@@ -1,6 +1,6 @@
 <h1>Edit Your Task: <%= @task.title %></h1>
 
-<form action='/tasks/<%= task.id %>' method='POST'>
+<form action='/tasks/<%= @task.id %>' method='POST'>
 <input type="hidden" value="patch" name="_method">
 <label>Title:</label>
 <input type ='text' id="title" name="task[title]" value="<%= @task.title %>"> <br> <br>
