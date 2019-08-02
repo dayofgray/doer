@@ -32,10 +32,11 @@ class TaskController < ApplicationController
     end
 
     get '/tasks/new' do
-        if logged in?
+        if logged_in?
             erb :'tasks/new'
         else
             redirect '/login'
+        end
     end
 
     get '/tasks/:id' do
@@ -48,6 +49,7 @@ class TaskController < ApplicationController
         else 
             flash[:error] = "You must be logged in to view your tasks"
             redirect '/login'  
+        end
     end
 
     get '/tasks/:id/edit' do
@@ -60,6 +62,7 @@ class TaskController < ApplicationController
         else 
             flash[:error] = "You must be logged in to view your tasks"
             redirect '/login' 
+        end
     end
 
     patch '/tasks/:id' do
