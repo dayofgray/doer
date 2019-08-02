@@ -8,13 +8,19 @@ class UserController < ApplicationController
         end
     end
 
-    post '/users' do ##add error for incomplete and possible email validation
+    post '/users' do
+        if params[:username] != "" && params[:email] != "" && params[:password] != "" && params[:email].include?("@")
         @user = User.new(username: params[:username], email: params[:email], password: params[:password])
         if @user.save
             login(params[:username], params[:password])
             redirect '/tasks'
         else
-            redirect '/signup' #need error message here
+            flash[:error] = "Please enter valid credentials"
+            redirect '/signup'
+        end
+        else
+            flash[:error] = "Please enter valid credentials"
+            redirect '/signup'
         end
     end
 

@@ -11,7 +11,7 @@ class TaskController < ApplicationController
         end 
       else
         flash[:error] = "You must be logged in to view your tasks"
-        redirect '/login'                # should only display my task
+        redirect '/login'               
       end
     end
 
