@@ -5,6 +5,12 @@
 <h3>Priority: <%= @task.priority %> </h3>
 <% end %>
 
+<form action='/tasks/<%= @task.id %>/edit' method='GET'>
+<input type="submit" value="Edit">
+</form>
+<br>
+
 <form action='/tasks/<%= @task.id %>' method='POST'>
 <input type="hidden" value="delete" name="_method">
-<input type="submit" value="delete">
+<input type="submit" value="Delete">
+</form>
