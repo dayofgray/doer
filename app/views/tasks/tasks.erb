@@ -1,12 +1,8 @@
 <h1>Welcome to your tasks</h1>
 
-<%# link to tasks %>
-<%# button to create new tasks %>
-<%# button to log out %>
-
 <ol>
 <% @tasks.each do |task|%>
-<li><%= task.title%>
+<li><a href="/tasks/<%= task.id %>"><%= task.title%></a>
 <ul>
 <li>Due Date: <%= task.due_date%> </li>
 <% if task.priority %>
@@ -16,3 +12,7 @@
 </li>
 <% end %>
 </ol>
+
+<form action='/tasks/new' method='GET'>
+<input type="submit" value="Create Task">
+</form>

@@ -14,6 +14,9 @@ class UserController < ApplicationController
         if @user.save
             login(params[:username], params[:password])
             redirect '/tasks'
+        elsif !@user.valid?
+            flash[:error] = "Please choose another username and email, those have been taken"
+            redirect '/signup'
         else
             flash[:error] = "Please enter valid credentials"
             redirect '/signup'
