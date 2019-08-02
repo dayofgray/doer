@@ -66,18 +66,16 @@ class TaskController < ApplicationController
     end
 
     patch '/tasks/:id' do
-        if logged_in?
         @task = Task.find(params[:id])
-            if params[:title] != ""
-                @task.title = params[:title]
-            end
-            if params[:due_date] != ""
-                @task.due_date = params[:due_date]
-            end
-            if params[:priority] != ""
-                @task.priority = params[:priority]
-            end
+        if logged_in? && params[:task][:title] != "" && params[:task][:due_date] != ""
+                @task.title = params[:task][:title]
+                @task.due_date = params[:task][:due_date]
+                @task.priority = params[:task][:priority]
+                @task.save
             redirect "/tasks/#{@task.id}"
+        elsif params[:task][:title] == "" || params[:task][:due_date] == ""
+            flash[:error] = "Your task must have a Title and Due Date"
+            redirect "/tasks/#{@task.id}/edit" 
         else
             redirect '/login'
         end
