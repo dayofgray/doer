@@ -35,7 +35,11 @@ class ApplicationController < Sinatra::Base
     end
 
     get '/' do
-        erb :'index'
+        if logged_in?
+          redirect '/tasks'
+        else
+          erb :'index'
+        end
     end
 
 end

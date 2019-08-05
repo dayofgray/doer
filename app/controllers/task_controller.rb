@@ -16,17 +16,17 @@ class TaskController < ApplicationController
     end
 
     post '/tasks' do
-        if !params[:task].has_value?("")
-        @task=Task.new(params[:task])
-            @task.user_id = session[:user_id]
-            if @task.save
-                erb :'tasks/show'
-            else
-            flash[:error] = "You must create a valid task"
-            redirect '/tasks/new'
-            end
+        if params[:task][:title] != "" && params[:task][:due_date] != ""
+            @task=Task.new(params[:task])
+                @task.user_id = session[:user_id]
+                if @task.save
+                    erb :'tasks/show'
+                else
+                flash[:error] = "You must create a valid task"
+                redirect '/tasks/new'
+                end
         else
-            flash[:error] = "You must fill out each field"
+            flash[:error] = "You must fill out the title and due date of your task"
             redirect '/tasks/new' 
         end
     end
